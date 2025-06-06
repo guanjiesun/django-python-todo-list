@@ -20,7 +20,7 @@
 <body>
     <h1>Todo List</h1>
 
-    <form method="post" action="{% url 'add_todo' %}">
+    <form method="post" action="{% url 'todo:add' %}">
         {% csrf_token %}
         <p>
             <label for="item_id">Item:</label>
@@ -34,9 +34,9 @@
     <h2>Todo items is shown as below:</h2>
         <table border="1" cellspacing="0" cellpadding="8">
             <colgroup>
-                <col style="background-color: greenyellow; " />
-                <col style="background-color: lightpink; " />
-                <col style="background-color: lightblue; " />
+                <col style="background-color: #aff0f0; " />
+                <col style="background-color: #c3e6fa; " />
+                <col style="background-color: #e2cbf2; " />
             </colgroup>
             <thead>
                 <tr>
@@ -50,7 +50,13 @@
                 <tr>
                     <td>{{ item.id }}</td>
                     <td>{{ item.item }}</td>
-                    <td>{% if item.completed %}✔️{% else %}❌{% endif %}</td>
+                    <td>
+                        {% if item.completed %}
+                        Yes
+                        {% else %}
+                        No
+                        {% endif %}
+                    </td>
                 </tr>
                 {% empty %}
                 <!-- 如果items为空列表，则执行以下代码 -->
