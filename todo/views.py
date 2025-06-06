@@ -3,17 +3,22 @@ from django.urls import reverse
 from .models import TodoItem
 
 
-def todo_list(request):
+def index(request):
+    # 向用户展示所有的 items
     items = TodoItem.objects.all()
-    return render(request, 'todo/todo_list.html', {'items': items})
+    return render(request, 'todo/index.html', {'items': items})
 
 
-def add_todo(request):
+def add(request):
+    """ 添加一个新的 item
+    1. 将用户提交的item保存到数据库中
+    2. 然后重定向到主页
+    """
     if request.method == 'POST':
         item_text = request.POST.get('item')
         if item_text:
             TodoItem.objects.create(item=item_text)
 
     # 根据 namespace:url_name 反向解析出对应的url
-    url = reverse("todo:todo_list")
+    url = reverse("todo:index")
     return redirect(url)
