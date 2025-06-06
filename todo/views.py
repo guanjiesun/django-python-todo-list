@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import TodoItem
 
@@ -22,3 +22,12 @@ def add(request):
     # 根据 namespace:url_name 反向解析出对应的url
     url = reverse("todo:index")
     return redirect(url)
+
+
+def detail(request, item_id):
+    """
+    展示执行 item 的信息
+    """
+    if request.method == 'GET':
+        item = get_object_or_404(TodoItem, pk=item_id)
+        return render(request, 'todo/detail.html', {'item': item})
