@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from .models import TodoItem
 
 
@@ -12,4 +13,7 @@ def add_todo(request):
         item_text = request.POST.get('item')
         if item_text:
             TodoItem.objects.create(item=item_text)
-    return redirect('todo_list')
+
+    # 根据 namespace:url_name 反向解析出对应的url
+    url = reverse("todo:todo_list")
+    return redirect(url)
