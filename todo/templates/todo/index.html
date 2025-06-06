@@ -1,37 +1,48 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Todo List</title>
-    <style>
-    table {
-        border-collapse: collapse;
-        width: 30%;
-    }
-    th, td {
-        border: 1px solid #ccc;
-        text-align: center;
-        padding: 8px;
-    }
-    th {
-        background-color: #f4f4f4;
-    }
-    </style>
+    <meta charset="utf-8">
+    <title>TODO TEST</title>
+    <link href="{% static 'todo/css/test-style.css' %}" rel="stylesheet">
+    <link href="vite-logo.svg" rel="icon" type="image/svg+xml">
 </head>
+
 <body>
-    <h1>Todo List</h1>
 
-    <form method="post" action="{% url 'todo:add' %}">
-        {% csrf_token %}
-        <p>
-            <label for="item_id">Item:</label>
-            <input type="text" name="item" id="item_id" placeholder="Enter a new task" required>
-        </p>
-        <p>
-            <button type="submit">Add</button>
-        </p>
-    </form>
+    <header>
+        <h1>Todo List Powered by Django</h1>
+    </header>
 
-    <h2>Todo items is shown as below:</h2>
+    <nav>
+        <ul>
+            <li><a href="{% url 'todo:index' %}">Homepage</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/" target="_blank">MDN</a></li>
+            <li><a href="https://www.google.com" target="_blank">Google</a></li>
+            <li><a href="https://www.baidu.com" target="_blank">Baidu</a></li>
+            <li><a href="https://www.apple.com" target="_blank">Apple</a></li>
+            <li><a href="https://www.amazon.com" target="_blank">Amazon</a></li>
+            <li><a href="https://www.alibaba.com/" target="_blank">Alibaba</a></li>
+            <li><a href="https://www.jd.com/" target="_blank">JD</a></li>
+            <li><a href="https://www.taobao.com/" target="_blank">Taobao</a></li>
+            <li><a href="https://vuejs.org/" target="_blank">Vue.js</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <article>
+        <h2>Please input your item</h2>
+            <form method="post" action="{% url 'todo:add' %}">
+                {% csrf_token %}
+                <p class="form-line">
+                    <label for="item_id">Item:</label>
+                    <input type="text" name="item" id="item_id" placeholder="Add a new task~" required>
+                    <input type="submit" value="Submit" />
+                </p>
+            </form>
+        <hr>
+
+        <h2>Todo items is shown as below:</h2>
         <table border="1" cellspacing="0" cellpadding="8">
             <colgroup>
                 <col style="background-color: #aff0f0; " />
@@ -66,5 +77,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        </article>
+    </main>
 </body>
 </html>
