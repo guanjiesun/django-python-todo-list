@@ -1,14 +1,9 @@
-from django.shortcuts import render
+from django.http import HttpResponse
 
 
-def homepage(request):
-    # 从查询参数中获取数据，默认值用 .get(key, default)
-    name = request.GET.get('name', '访客')
-    age = request.GET.get('age', '未知')
+def index(request):
+    # 整个项目的主页
+    content = """
+    <h1 style="text-align: center;">WELCOME TO MY HOMEPAGE</h1>"""
 
-    context = {
-        'name': name,
-        'age': age,
-    }
-
-    return render(request, 'index.html', context)
+    return HttpResponse(content)

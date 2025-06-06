@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-fvusk0%+^q3c@%$om_k3%i&4f)xv5=-zc!*#*w3xu)a$1a*2x&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['*']
+
 ALLOWED_HOSTS = ['*']
 
 
@@ -44,7 +44,7 @@ ROOT_URLCONF = 'firstDjangoProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "firstDjangoProject" / "templates"],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -64,10 +64,6 @@ WSGI_APPLICATION = 'firstDjangoProject.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pytodo',
@@ -115,11 +111,6 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-
-# 告诉 Django 寻找静态文件的时候，额外要找的文件夹
-STATICFILES_DIRS = [
-    BASE_DIR / "firstDjangoProject" / "static",
-]
 
 
 # Default primary key field type

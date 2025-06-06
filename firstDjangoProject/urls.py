@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # TODO name 是为每个 URL 路由起一个唯一的名字，用于反向解析 URL（即通过名字生成 URL 地址），不必硬编码 URL 路径
-    path('', views.homepage, name='homepage_v'),
+    path('', views.index, name='index'),
 
     # TODO include 是 Django 提供的一个函数，用来引入其他模块的 URL 配置
     # goods.urls 表示导入 goods 这个 package 的 urls 模块(urls.py)
