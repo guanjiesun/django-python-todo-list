@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOMEPAGE</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+    <h1>WELCO ME TO THE HOMEPAGE OF THE WHOLE PROJECT</h1>
+
+    <form action="/" method="get">
+        <p>
+            <label for="name_id">Name(required):</label>
+            <input
+                    type="text"
+                    id="name_id"
+                    placeholder="What's your name?"
+                    name="name"
+                    required
+            />
+        </p>
+        <p>
+            <label for="age_id">Age(required):</label>
+            <input
+                    type="number"
+                    id="age_id"
+                    placeholder="age"
+                    name="age"
+                    required
+                    min="0"
+                    max="150"
+                    step="1"
+            />
+        </p>
+        <p>
+            <button type="submit">Summit</button>
+        </p>
+    </form>
+    <h2>欢迎, {{ name }}!</h2>
+    <h2>你的年龄是: {{ age }}</h2>
+</body>
+</html>

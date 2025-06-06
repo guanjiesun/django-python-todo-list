@@ -1,0 +1,14 @@
+html {
+    background-color: lightgray;
+}
+
+body {
+    width: 800px;
+    background-color: lightblue;
+    margin: 0 auto;
+    border: 3px solid red;
+}
+
+h1 {
+    text-align: center;
+}
