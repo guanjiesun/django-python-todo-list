@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+    <style>
+    table {
+        border-collapse: collapse;
+        width: 30%;
+    }
+    th, td {
+        border: 1px solid #ccc;
+        text-align: center;
+        padding: 8px;
+    }
+    th {
+        background-color: #f4f4f4;
+    }
+    </style>
+</head>
+<body>
+    <h1>Todo List</h1>
+
+    <form method="post" action="{% url 'add_todo' %}">
+        {% csrf_token %}
+        <p>
+            <label for="item_id">Item:</label>
+            <input type="text" name="item" id="item_id" placeholder="Enter a new task" required>
+        </p>
+        <p>
+            <button type="submit">Add</button>
+        </p>
+    </form>
+
+    <h2>Todo items is shown as below:</h2>
+        <table border="1" cellspacing="0" cellpadding="8">
+            <colgroup>
+                <col style="background-color: greenyellow; " />
+                <col style="background-color: lightpink; " />
+                <col style="background-color: lightblue; " />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Item</th>
+                    <th>Completed</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.item }}</td>
+                    <td>{% if item.completed %}✔️{% else %}❌{% endif %}</td>
+                </tr>
+                {% empty %}
+                <!-- 如果items为空列表，则执行以下代码 -->
+                <tr>
+                    <td colspan="3">No todo items yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</body>
+</html>

@@ -15,5 +15,6 @@ urlpatterns = [
     # TODO namespace 机制需要 app_name 支持，每一个应用的 urls.py 中要定义 app_name 变量, app_name 的值是任意的
     path('freight/', include('goods.urls', namespace='goods_ns')),
     path('house/', include('home.urls', namespace='home_ns')),
-    path('cracker/', include("cookies.urls", namespace='cookies_ns'))
+    path('cracker/', include("cookies.urls", namespace='cookies_ns')),
+    path('todo/', include('todo.urls'))
 ]
