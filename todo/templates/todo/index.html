@@ -32,7 +32,7 @@
     <main>
         <article>
         <h2>Please input your item</h2>
-            <form method="post" action="{% url 'todo:add' %}">
+            <form method="post" action="{% url 'todo:index' %}">
                 {% csrf_token %}
                 <p class="form-line">
                     <label for="item_id">Item:</label>
@@ -60,7 +60,7 @@
                 {% for item in items %}
                 <tr>
                     <td>
-                        <a href="{% url 'todo:detail' item.id %}">{{ item.id }}</a>
+                        <a href="{% url 'todo:todo_item' item.id %}">{{ item.id }}</a>
                     </td>
                     <td>{{ item.item }}</td>
                     <td>
