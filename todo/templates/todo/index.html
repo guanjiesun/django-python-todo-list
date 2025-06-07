@@ -58,7 +58,7 @@
             </thead>
             <tbody>
                 {% for item in items %}
-                <tr>
+                <tr data-id="{{ item.id }}">
                     <td>
                         <a href="{% url 'todo:todo_item' item.id %}" target="_blank">{{ item.id }}</a>
                     </td>
@@ -78,7 +78,7 @@
                 {% empty %}
                 <!-- 如果items为空列表，则执行以下代码 -->
                 <tr>
-                    <td colspan="3">No todo items yet.</td>
+                    <td colspan="4">No todo items yet.</td>
                 </tr>
                 {% endfor %}
             </tbody>
