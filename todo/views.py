@@ -19,7 +19,6 @@ def index(request):
             if item_text:
                 # 防止 空字符串 或者 None 插入到数据库
                 TodoItem.objects.create(item=item_text)
-        # items = TodoItem.objects.all()
         items = TodoItem.objects.all().order_by('id')
         return render(request, 'todo/index.html', {'items': items})
     else:
