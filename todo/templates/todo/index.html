@@ -6,6 +6,7 @@
     <title>TODO TEST</title>
     <link href="{% static 'todo/css/style.css' %}" rel="stylesheet">
     <link href="{% static 'todo/icon/favicon.ico' %}" rel="icon">
+    <script src="{% static 'todo/js/script.js' %}" defer></script>
 </head>
 
 <body>
@@ -48,19 +49,21 @@
                 <col style="background-color: #aff0f0; " />
                 <col style="background-color: #c3e6fa; " />
                 <col style="background-color: #e2cbf2; " />
+                <col style="background-color: #ede6c5; " />
             </colgroup>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Item</th>
                     <th>Completed</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in items %}
                 <tr>
                     <td>
-                        <a href="{% url 'todo:todo_item' item.id %}">{{ item.id }}</a>
+                        <a href="{% url 'todo:todo_item' item.id %}" target="_blank">{{ item.id }}</a>
                     </td>
                     <td>{{ item.item }}</td>
                     <td>
@@ -69,6 +72,10 @@
                         {% else %}
                             No
                         {% endif %}
+                    </td>
+                    <td>
+                        <button onclick="deleteTodoItem({{ item.id }})">Delete</button>
+                        <button onclick="updateItemPrompt({{ item.id }})">Update</button>
                     </td>
                 </tr>
                 {% empty %}
