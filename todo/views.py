@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseNotAllowed
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseNotAllowed, JsonResponse
 from django.db import transaction
 from .models import TodoItem
 
@@ -34,14 +34,17 @@ def todo_item(request, item_id):
     if request.method == 'GET':
         return render(request, 'todo/detail.html', {'item': item})
     elif request.method == 'PUT':
-        data = json.loads(request.body)
+        try:
+            data = json.loads(request.body)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
         item.item = data.get('item', item.item)
         item.completed = data.get('completed', item.completed)
         item.save()
-        return redirect('todo:index')  # namespace:url_name
+        return JsonResponse({}, status=204)
     elif request.method == 'DELETE':
         with transaction.atomic():  # 确保删除操作的原子性
             item.delete()
-        return redirect('todo:index')  # namespace:url_name
+        return JsonResponse({}, status=204)
     else:
         return HttpResponseNotAllowed(['GET', 'PUT', 'DELETE'])
