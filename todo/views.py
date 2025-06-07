@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseNotAllowed, JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseNotAllowed, JsonResponse, HttpResponse
 from django.db import transaction
 from .models import TodoItem
 
@@ -10,19 +10,20 @@ def index(request):
     """
     显示所有 items：
     - GET 请求：返回 item 列表页面
-    - POST 请求：创建新 item 然后返回 item 列表页面
+    - POST 请求：创建新 item 然后重定向，发起一次新的 GET 请求 (POST -> redirect -> GET)
     - 其他请求：返回 405 不允许
     """
-    if request.method in ['POST', 'GET']:
-        if request.method == 'POST':
-            item_text = request.POST.get('item')
-            if item_text:
-                # 防止 空字符串 或者 None 插入到数据库
-                TodoItem.objects.create(item=item_text)
+    if request.method == 'POST':
+        item_text = request.POST.get('item')
+        if item_text:
+            # 防止 空字符串 或者 None 插入到数据库
+            TodoItem.objects.create(item=item_text)
+        # post->redirect->get
+        return redirect('todo:index')
+    elif request.method == 'GET':
         items = TodoItem.objects.all().order_by('id')
         return render(request, 'todo/index.html', {'items': items})
     else:
-        # HttpResponseNotAllowed(['GET', 'POST']) 会返回一个 405 状态码，告诉前端“方法不允许”
         return HttpResponseNotAllowed(['GET', 'POST'])
 
 
@@ -41,10 +42,10 @@ def todo_item(request, item_id):
         item.item = data.get('item', item.item)
         item.completed = data.get('completed', item.completed)
         item.save()
-        return JsonResponse({}, status=204)
+        return HttpResponse(status=204)
     elif request.method == 'DELETE':
         with transaction.atomic():  # 确保删除操作的原子性
             item.delete()
-        return JsonResponse({}, status=204)
+        return HttpResponse(status=204)
     else:
         return HttpResponseNotAllowed(['GET', 'PUT', 'DELETE'])
