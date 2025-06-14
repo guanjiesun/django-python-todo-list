@@ -11,6 +11,6 @@ app_name = 'app_name_of_goods'
 
 urlpatterns = [
     # TODO name 是为每个 URL 路由起一个唯一的名字，用于反向解析 URL（即通过名字生成 URL 地址），不必硬编码 URL 路径
-    path('index/', views.index, name='index_v'),
+    path('', views.index, name='index_v'),
     path('hello/', views.hello, name='hello_v'),
 ]
