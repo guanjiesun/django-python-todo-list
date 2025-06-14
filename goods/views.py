@@ -29,8 +29,8 @@ def index(request):
         print(request.body.decode("utf-8"))
     print('@' * 20, 'Request Body', '@' * 20, '\n')
 
-    return HttpResponse("<h1>Message from goods->views->index function</h1>")
+    return HttpResponse("<h1>Message from goods->views->index</h1>")
 
 
 def hello(request):
-    return HttpResponse("<h1>Message from goods->views->hi function</h1>")
+    return HttpResponse("<h1>Message from goods->views->hello</h1>")
