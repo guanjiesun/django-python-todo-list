@@ -26,12 +26,16 @@
             <col style="background-color: #aff0f0; " />
             <col style="background-color: #c3e6fa; " />
             <col style="background-color: #e2cbf2; " />
+            <col style="background-color: #e2cbf2; " />
+            <col style="background-color: #e2cbf2; " />
         </colgroup>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Item</th>
                 <th>Completed</th>
+                <th>Created at</th>
+                <th>Updated at</th>
             </tr>
         </thead>
         <tbody>
@@ -44,6 +48,12 @@
                     {% else %}
                         No
                     {% endif %}
+                </td>
+                <td>
+                    {{ item.created_at|date:"m-d H:i" }}
+                </td>
+                <td>
+                    {{ item.updated_at|date:"m-d H:i" }}
                 </td>
             </tr>
         </tbody>

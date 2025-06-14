@@ -47,6 +47,8 @@
                 <col style="background-color: #c3e6fa; " />
                 <col style="background-color: #e2cbf2; " />
                 <col style="background-color: #ede6c5; " />
+                <col style="background-color: #ede6c5; " />
+                <col style="background-color: #ede6c5; " />
             </colgroup>
             <thead>
                 <tr>
@@ -54,6 +56,8 @@
                     <th>Item</th>
                     <th>Completed</th>
                     <th>Action</th>
+                    <th>Created at</th>
+                    <th>Updated at</th>
                 </tr>
             </thead>
             <tbody>
@@ -74,11 +78,17 @@
                         <button onclick="deleteTodoItem({{ item.id }})">Delete</button>
                         <button onclick="updateItemPrompt({{ item.id }})">Update</button>
                     </td>
+                    <td>
+                        {{ item.created_at|date:"m-d H:i" }}
+                    </td>
+                    <td>
+                        {{ item.updated_at|date:"m-d H:i" }}
+                    </td>
                 </tr>
                 {% empty %}
                 <!-- 如果items为空列表，则执行以下代码 -->
                 <tr>
-                    <td colspan="4">No todo items yet.</td>
+                    <td colspan="6">No todo items yet.</td>
                 </tr>
                 {% endfor %}
             </tbody>
