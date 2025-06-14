@@ -8,7 +8,7 @@ import json
 
 def index(request):
     """
-    显示所有 items：
+    显示所有 items
     - GET 请求：返回 item 列表页面
     - POST 请求：创建新 item 然后重定向，发起一次新的 GET 请求 (POST -> redirect -> GET)
     - 其他请求：返回 405 不允许
