@@ -33,5 +33,4 @@ def index(request):
 
 
 def hello(request):
-    print(type(request))
     return HttpResponse("<h1>Message from goods->views->hi function</h1>")
