@@ -1,4 +1,4 @@
-<!--{% load static %}-->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +79,6 @@
                         <button onclick="updateItemPrompt({{ item.id }})">Update</button>
                     </td>
                     <td>
-                        <! -- 语法: 变量名 | 过滤器名:参数; 其中 | 是过滤器操作符, date是过滤器函 -->
                         {{ item.created_at|date:"m-d H:i" }}
                     </td>
                     <td>
