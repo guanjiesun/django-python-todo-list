@@ -67,7 +67,7 @@ function updateTodoItem(itemId, data) {
 
 function updateCompletiondStatus(itemId) {
     // 函数是用来更新 item 的完成状态的
-    // 因为只能从未完成状态更新为已完成状态，不可能从已完成状态更新为未完成状态
+    // 只能从未完成状态更新为已完成状态，不可能从已完成状态更新为未完成状态
     fetch(`/todo/${itemId}/`, {
         method: 'PUT',
         headers: {
