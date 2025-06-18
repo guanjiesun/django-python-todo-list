@@ -45,7 +45,12 @@ def todo_item(request, item_id):
         item.item = data.get('item', item.item)
         item.completed = data.get('completed', item.completed)
         item.save()
-        return HttpResponse(status=204)
+
+        # 返回 JSON 响应，包含更新时间
+        return JsonResponse({
+            'success': True,
+            'updated_at': item.updated_at.strftime('%m-%d %H:%M')
+        })
     elif request.method == 'DELETE':
         with transaction.atomic():  # 确保删除操作的原子性
             item.delete()
