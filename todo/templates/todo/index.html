@@ -54,7 +54,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Item</th>
-                    <th>Completed</th>
+                    <th>Completion Status</th>
                     <th>Action</th>
                     <th>Created at</th>
                     <th>Updated at</th>
@@ -68,11 +68,22 @@
                     </td>
                     <td>{{ item.item }}</td>
                     <td>
-                        {% if item.completed %}
-                            Yes
-                        {% else %}
-                            No
-                        {% endif %}
+                        <label>
+                            <input
+                            type="radio"
+                            name="completion_status_{{ item.id }}"
+                            value="Yes"
+                            {% if item.completed %}checked{% endif %}
+                            onchange="updateCompletedStatus({{ item.id }}, 'Yes')">Yes
+                        </label>
+                        <label>
+                            <input
+                            type="radio"
+                            name="completion_status_{{ item.id }}"
+                            value="No"
+                            {% if not item.completed %}checked{% endif %}
+                            onchange="updateCompletedStatus({{ item.id }}, 'No')">No
+                        </label>
                     </td>
                     <td>
                         <button onclick="deleteTodoItem({{ item.id }})">Delete</button>
