@@ -22,6 +22,9 @@ def index(request):
         return redirect('todo:index')
     elif request.method == 'GET':
         items = TodoItem.objects.all().order_by('id')
+        # render 函数拿到数据然后渲染模板，产生 HTML 响应
+        # 第一个参数是 request 对象，第二个参数是模板文件路径，第三个参数是一个字典，包含要传递给模板的数据
+        # 公式: template + data -> web page(HTML)
         return render(request, 'todo/index.html', {'items': items})
     else:
         return HttpResponseNotAllowed(['GET', 'POST'])
