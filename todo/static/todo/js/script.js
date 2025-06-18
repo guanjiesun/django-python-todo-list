@@ -65,32 +65,31 @@ function updateTodoItem(itemId, data) {
     });
 }
 
-function updateCompletedStatus(itemId, completionStatus) {
-    // flag 的值是 true 表示已完成，false 表示未完成
-    const flag = (completionStatus === 'Yes');
+function updateCompletiondStatus(itemId) {
+    // 函数是用来更新 item 的完成状态的
+    // 因为只能从未完成状态更新为已完成状态，不可能从已完成状态更新为未完成状态
     fetch(`/todo/${itemId}/`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': getCookie('csrftoken'),
         },
-        body: JSON.stringify({ completed: flag })
+        body: JSON.stringify({ completed: true })
     })
     .then(response => response.json())
     .then(result => {
         if (result.success) {
-            console.log(`Item ${itemId} 状态更新为: ${completionStatus}`);
+            console.log(`Item ${itemId} 状态更新为: Yes`);
             const row = document.querySelector(`tr[data-id="${itemId}"]`);
             if (row) {
                 // 更新第六列，即 item 的更新时间
                 row.cells[5].textContent = result.updated_at;
 
-                // 如果已完成，则禁用所有的 radio 按钮
-                // 如果未完成，则启用所有的 radio 按钮
-                // const radios = row.querySelectorAll(`input[type="radio"][name="completion_status_${itemId}"]`);
-                // radios.forEach(radio => {
-                //     radio.disabled = flag;
-                // });
+                // 完成状态更新为 Yes 之后，禁用所有的 radio 按钮
+                const radios = row.querySelectorAll(`input[type="radio"][name="completion_status_${itemId}"]`);
+                radios.forEach(radio => {
+                    radio.disabled = true;
+                });
             }
         } else {
             console.error("更新失败:", result.error || "未知错误");

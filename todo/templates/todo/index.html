@@ -68,13 +68,22 @@
                     </td>
                     <td>{{ item.item }}</td>
                     <td>
+                        {% comment %}
+                        1. 如果已完成，则禁用两个 radio 按钮，用 input 元素的 disabled 属性实现
+                        2. 基本逻辑: 
+                        - 只能从未完成状态更新为已完成状态，不可能从已完成状态更新为未完成状态
+                        - 创建 item 时，默认未完成状态
+                        - 因此，只给 value='Yes'的 radio 按钮添加 onchange 属性，事件发生时用 updateCompletiondStatus 函数更新 item 的完成状态
+                        {% endcomment %}
                         <label>
                             <input
                             type="radio"
                             name="completion_status_{{ item.id }}"
                             value="Yes"
                             {% if item.completed %}checked{% endif %}
-                            onchange="updateCompletedStatus({{ item.id }}, 'Yes')">Yes
+                            {% if item.completed %}disabled{% endif %} 
+                            onchange="updateCompletiondStatus({{ item.id }})"
+                            >Yes
                         </label>
                         <label>
                             <input
@@ -82,7 +91,8 @@
                             name="completion_status_{{ item.id }}"
                             value="No"
                             {% if not item.completed %}checked{% endif %}
-                            onchange="updateCompletedStatus({{ item.id }}, 'No')">No
+                            {% if item.completed %}disabled{% endif %}
+                            >No
                         </label>
                     </td>
                     <td>
