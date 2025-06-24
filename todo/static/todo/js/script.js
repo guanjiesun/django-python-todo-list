@@ -124,3 +124,10 @@ document.querySelectorAll('.update-btn').forEach(btn => {
         updateItemPrompt(itemId);
     });
 });
+
+document.querySelectorAll(".update-completion-status-btn").forEach(btn => {
+    btn.addEventListener('change', () => {
+        const itemId = btn.getAttribute('data-id');
+        updateCompletiondStatus(itemId);
+    })
+})

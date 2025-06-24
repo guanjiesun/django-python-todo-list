@@ -77,9 +77,10 @@
                             type="radio"
                             name="completion_status_{{ item.id }}"
                             value="Yes"
+                            class="update-completion-status-btn"
+                            data-id="{{ item.id }}"
                             {% if item.completed %}checked{% endif %}
                             {% if item.completed %}disabled{% endif %} 
-                            onchange="updateCompletiondStatus({{ item.id }})"
                             >Yes
                         </label>
                         <label>
