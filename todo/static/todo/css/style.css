@@ -1,5 +1,3 @@
-/* 一般设置 */
-
 html, body {
   margin: 0;
   padding: 0;
@@ -16,8 +14,6 @@ body {
   margin: 0 auto;
   border: 5px solid yellow;
 }
-
-/* 文字排版 */
 
 h1, h2, h3 {
   font-family: 'Sonsie One', 'ZCOOL KuaiLe', cursive;
@@ -49,8 +45,6 @@ p, li {
   font-size: 1.6rem;
   line-height: 1.5;
 }
-
-/* 标题布局 */
 
 nav, article, aside, footer {
   background-color: white;
@@ -117,8 +111,6 @@ input[type="submit"] {
   color: white;
 }
 
-/* 主体布局 */
-
 main {
     display: flex;
 }
@@ -127,7 +119,6 @@ article {
     flex: 4;
 }
 
-/* 我自己定义的样式 */
 form {
   display: flex;
   flex-direction: column;
