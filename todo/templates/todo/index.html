@@ -95,8 +95,8 @@
                         </label>
                     </td>
                     <td>
-                        <button onclick="deleteTodoItem({{ item.id }})">Delete</button>
-                        <button onclick="updateItemPrompt({{ item.id }})">Update</button>
+                        <button class="delete-btn" data-id="{{ item.id }}">Delete</button>
+                        <button class="update-btn" data-id="{{ item.id }}">Update</button>
                     </td>
                     <td>
                         {{ item.created_at|date:"m-d H:i" }}
@@ -104,10 +104,6 @@
                     <td>
                         {{ item.updated_at|date:"m-d H:i" }}
                     </td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="6">No todo items yet.</td>
                 </tr>
                 {% endfor %}
             </tbody>
