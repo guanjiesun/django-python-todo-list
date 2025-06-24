@@ -110,3 +110,17 @@ function getCookie(name) {
     }
     return null;
 }
+
+document.querySelectorAll('.delete-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const itemId = btn.getAttribute('data-id');
+        deleteTodoItem(itemId);
+    });
+});
+
+document.querySelectorAll('.update-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const itemId = btn.getAttribute('data-id');
+        updateItemPrompt(itemId);
+    });
+});
