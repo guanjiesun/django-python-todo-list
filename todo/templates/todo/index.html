@@ -32,13 +32,14 @@
             <form method="post" action="{% url 'todo:index' %}">
                 {% csrf_token %}
                 <p class="form-line">
-                    <label for="item_id">Item:</label>
-                    <input type="text" name="item" id="item_id" placeholder="Add a new task~" required>
+                    <label for="item-text">Item:</label>
+                    <input type="text" name="item" id="item-text" placeholder="Add a new task~" required>
                     <input type="submit" value="Submit" />
                 </p>
             </form>
 
-        <table border="1" cellspacing="0" cellpadding="8">
+        {% comment %} <table border="1" cellspacing="0" cellpadding="8"> {% endcomment %}
+        <table>
             <colgroup>
                 <col style="background-color: #aff0f0; " />
                 <col style="background-color: #c3e6fa; " />
