@@ -45,8 +45,8 @@
                 <col style="background-color: #c3e6fa; " />
                 <col style="background-color: #e2cbf2; " />
                 <col style="background-color: #ede6c5; " />
-                <col style="background-color: #ede6c5; " />
-                <col style="background-color: #ede6c5; " />
+                <col style="background-color: #c9f5c9; " />
+                <col style="background-color: #f5beba; " />
             </colgroup>
             <thead>
                 <tr>
@@ -73,7 +73,7 @@
                         - 创建 item 时，默认未完成状态
                         - 因此，只给 value='Yes'的 radio 按钮添加 onchange 属性，事件发生时用 updateCompletiondStatus 函数更新 item 的完成状态
                         {% endcomment %}
-                        <label>
+                        <label class='radio-label'>
                             <input
                             type="radio"
                             name="completion_status_{{ item.id }}"
@@ -82,16 +82,18 @@
                             data-id="{{ item.id }}"
                             {% if item.completed %}checked{% endif %}
                             {% if item.completed %}disabled{% endif %} 
-                            >Yes
+                            >
+                            <span>Yes</span>
                         </label>
-                        <label>
+                        <label class='radio-label'>
                             <input
                             type="radio"
                             name="completion_status_{{ item.id }}"
                             value="No"
                             {% if not item.completed %}checked{% endif %}
                             {% if item.completed %}disabled{% endif %}
-                            >No
+                            >
+                            <span>No</span>
                         </label>
                     </td>
                     <td>
