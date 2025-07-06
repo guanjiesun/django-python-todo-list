@@ -63,6 +63,8 @@ def set_session(request):
     """
     设置 session 数据
     """
+    # 检查是否已经设置了 session,如果没有则设置一个新的数据, 然后通过响应头中的 Set-Cookie 字段, 返回给客户端
+    # 如果已经设置了 session, 则直接覆盖或者添加
     request.session['username'] = 'Guanjie Miller Sun'
     return HttpResponse('Session set successfully!')
 
