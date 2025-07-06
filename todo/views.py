@@ -57,3 +57,19 @@ def todo_item(request, item_id):
         return HttpResponse(status=204)
     else:
         return HttpResponseNotAllowed(['GET', 'PUT', 'DELETE'])
+
+
+def set_session(request):
+    """
+    设置 session 数据
+    """
+    request.session['username'] = 'Guanjie Miller Sun'
+    return HttpResponse('Session set successfully!')
+
+
+def get_session(request):
+    """
+    获取 session 数据
+    """
+    username = request.session.get('username', 'Guest')
+    return HttpResponse(f'Hello, {username}!')
