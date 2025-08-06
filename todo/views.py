@@ -61,17 +61,29 @@ def todo_item(request, item_id):
 
 def set_session(request):
     """
-    设置 session 数据
+    设置用户的 session 数据
+
+    1. Django 的 SessionMiddleware 中间件 会根据 HTTP 请求头中的 Cookie 字段 来判断用户是否已经拥有 sessionid
+    如果有, SessionMiddleware 会从数据库中django_session 表中查询该 session ID 对应的 session 数据
+
+    2. 如果客户端没有携带名为 sessionid 的 Cookie, 只要视图中对 request.session 进行了写操作(如设置某个键值).
+    Django 就会自动创建一个新的 session ID, 并在响应中通过 Set-Cookie 字段将 sessionid 发送给客户端, 
+    同时将会话数据保存到服务器端(如数据库、缓存等 session 后端).
+
+    3. 客户端在后续请求中会自动携带该 session ID, 从而实现会话保持.
     """
-    # 检查是否已经设置了 session,如果没有则设置一个新的数据, 然后通过响应头中的 Set-Cookie 字段, 返回给客户端
-    # 如果已经设置了 session, 则直接覆盖或者添加
-    request.session['username'] = 'Guanjie Miller Sun'
+
+    request.session['username'] = 'Guanjie Sun'
+    request.session['email'] = 'guanjie.sun@outlook.com'
     return HttpResponse('Session set successfully!')
 
 
 def get_session(request):
     """
     获取 session 数据
+    如果客户端没有携带 session ID 或者是无效的 session ID, 那么 request.session 将是一个空字典
+    如果客户端携带了有效的 session ID, 那么 request.session 将包含之前设置的 'username' 和 'email' 数据发送给客户端
     """
     username = request.session.get('username', 'Guest')
-    return HttpResponse(f'Hello, {username}!')
+    email = request.session.get('email', 'No email set')
+    return HttpResponse(f'Hello, {username}@{email}!')
