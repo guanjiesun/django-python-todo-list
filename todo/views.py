@@ -34,6 +34,8 @@ def todo_item(request, item_id):
     """
     查询、修改和删除一个 item
     """
+
+    # 若数据库中没有主键为 item_id 的 TodoItem 对象, 立即返回一个 HTTP 404 错误响应
     item = get_object_or_404(TodoItem, pk=item_id)
     if request.method == 'GET':
         return render(request, 'todo/detail.html', {'item': item})
