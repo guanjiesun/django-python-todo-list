@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Todo</title>
+</head>
+<body>
+    {% comment %} 使用views.add_todo_item 视图函数添加一个新的 todo item {% endcomment %}
+    <h1>Add a new todo item~</h1>
+    <form method="post" action="{% url 'todo:add_todo_item' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'todo:index' %}">Back to todo list</a>
+</body>
+</html>
