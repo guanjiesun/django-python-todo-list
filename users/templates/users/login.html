@@ -1,0 +1,11 @@
+<h2>登录</h2>
+
+{% for message in messages %}
+    <p style="color: green;">{{ message }}</p>
+{% endfor %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">登录</button>
+</form>

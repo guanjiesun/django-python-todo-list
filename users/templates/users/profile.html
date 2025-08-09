@@ -1,0 +1,17 @@
+{% block content %}
+    <h1>用户信息</h1>
+    <p><strong>用户名：</strong> {{ user.username }}</p>
+    <p><strong>邮箱：</strong> {{ user.email }}</p>
+    <p><strong>加入时间：</strong> {{ user.date_joined|date:"Y-m-d H:i" }}</p>
+
+    {% comment %} 修改密码按钮 {% endcomment %}
+    <p>
+        <a href="{% url 'users:password_change' %}">修改密码</a>
+    </p>
+
+    {% comment %} 退出登录按钮 {% endcomment %}
+    <form action="{% url 'users:logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">退出登录</button>
+    </form>
+{% endblock %}
