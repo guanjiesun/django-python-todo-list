@@ -16,5 +16,6 @@ urlpatterns = [
     path('goods/', include('goods.urls', namespace='goods_ns')),
     path('home/', include('home.urls', namespace='home_ns')),
     path('cookies/', include("cookies.urls", namespace='cookies_ns')),
-    path('todo/', include('todo.urls', namespace='todo'))
+    path('todo/', include('todo.urls', namespace='todo')),
+    path('users/', include('users.urls', namespace='users')),
 ]
