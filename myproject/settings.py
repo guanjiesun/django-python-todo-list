@@ -16,6 +16,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+LOGIN_REDIRECT_URL = '/users/profile/'  # 登录成功后重定向到 /todo/
+LOGOUT_REDIRECT_URL = '/users/login/'   # 登出后重定向到 /users/login/
 
 # Application definition
 
@@ -27,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todo',
+    'users',
 ]
 
 MIDDLEWARE = [
